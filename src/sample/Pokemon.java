@@ -3,12 +3,14 @@ package sample;
 public class Pokemon {
 
     private final String nombre;
+    private final int vida_total;
     private final int vida;
     private final int nivel;
     private final char genero;
 
-    public Pokemon(String nombre, int vida, int nivel, char genero) {
+    public Pokemon(String nombre, int vida_total, int vida, int nivel, char genero) {
         this.nombre = nombre;
+        this.vida_total = vida_total;
         this.vida = vida;
         this.nivel = nivel;
         this.genero = genero;
@@ -17,6 +19,8 @@ public class Pokemon {
     public String getNombre() {
         return nombre;
     }
+
+    public int getVida_total(){return vida_total;}
 
 
     public int getVida() {

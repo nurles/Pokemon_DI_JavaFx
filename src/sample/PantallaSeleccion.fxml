@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" style="-fx-background-color: #E1BCFF;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" style="-fx-background-color: #747474;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPantallaSeleccion">
    <columnConstraints>
       <ColumnConstraints minWidth="160.0" />
       <ColumnConstraints minWidth="160.0" />
@@ -65,21 +65,21 @@
          <GridPane.margin>
             <Insets bottom="30.0" />
          </GridPane.margin></ImageView>
-      <Button fx:id="boton" mnemonicParsing="false" text="Salir" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+      <Button fx:id="boton" mnemonicParsing="false" onAction="#onButtonAbrirClicked" text="Salir" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets bottom="5.0" right="5.0" />
+            <Insets bottom="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>
-      <Label fx:id="nombre" text="Label" GridPane.valignment="TOP">
+      <Label fx:id="nombre" text="Label" textFill="WHITE" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <Label fx:id="nivel" text="Label" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Label fx:id="nivel" text="Label" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="5.0" top="5.0" />
          </GridPane.margin>
@@ -114,7 +114,7 @@
             <Insets left="10.0" top="80.0" />
          </GridPane.margin>
       </Label>
-      <Label fx:id="vida" text="Label" GridPane.valignment="BOTTOM">
+      <Label fx:id="vida" text="Label" textFill="WHITE" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="5.0" left="20.0" />
          </GridPane.margin>
@@ -130,7 +130,7 @@
             <Blend mode="DARKEN" />
          </effect>
       </ImageView>
-      <Label fx:id="nombre2" text="Label" GridPane.columnIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nombre2" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
@@ -138,7 +138,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nivel2" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Label fx:id="nivel2" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="5.0" top="5.0" />
          </GridPane.margin>
@@ -146,7 +146,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nombre3" text="Label" GridPane.columnIndex="2" GridPane.valignment="TOP">
+      <Label fx:id="nombre3" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
@@ -154,7 +154,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nivel3" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Label fx:id="nivel3" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -201,7 +201,7 @@
             <Font name="Comic Sans MS Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="vida2" text="Label" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+      <Label fx:id="vida2" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="5.0" left="20.0" />
          </GridPane.margin>
@@ -233,7 +233,7 @@
             <Font name="Comic Sans MS Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="vida3" text="Label" GridPane.columnIndex="2" GridPane.valignment="BOTTOM">
+      <Label fx:id="vida3" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="5.0" left="20.0" />
          </GridPane.margin>
@@ -251,7 +251,7 @@
             <Insets bottom="5.0" right="15.0" />
          </GridPane.margin>
       </ImageView>
-      <Label fx:id="nivel4" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nivel4" text="Label" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="5.0" top="5.0" />
          </GridPane.margin>
@@ -259,7 +259,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nombre4" text="Label" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nombre4" text="Label" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
@@ -267,7 +267,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nombre5" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nombre5" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
@@ -275,7 +275,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nivel5" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nivel5" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="5.0" top="5.0" />
          </GridPane.margin>
@@ -283,7 +283,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nombre6" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nombre6" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" top="5.0" />
          </GridPane.margin>
@@ -291,7 +291,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="nivel6" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Label fx:id="nivel6" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="10.0" top="5.0" />
          </GridPane.margin>
@@ -328,7 +328,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Label fx:id="vida4" text="Label" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <Label fx:id="vida4" text="Label" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="5.0" left="20.0" />
          </GridPane.margin>
@@ -346,7 +346,7 @@
             <Insets right="10.0" top="80.0" />
          </GridPane.margin>
       </ProgressBar>
-      <Label fx:id="vida5" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <Label fx:id="vida5" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -402,7 +402,7 @@
             <Insets left="10.0" top="80.0" />
          </GridPane.margin>
       </Label>
-      <Label fx:id="vida6" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <Label fx:id="vida6" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="5.0" left="20.0" />
          </GridPane.margin>
@@ -425,5 +425,13 @@
             <Insets bottom="5.0" right="15.0" />
          </GridPane.margin>
       </ImageView>
+      <Label fx:id="mensaje" text="Label" textFill="WHITE" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>
