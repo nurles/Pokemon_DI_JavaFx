@@ -196,7 +196,7 @@ public class ControllerPantallaLucha {
             idPbRival.setStyle("-fx-accent: red");
 
         }else{
-            idPb.setStyle("-fx-accent: green");
+            idPbRival.setStyle("-fx-accent: green");
         }
     }
 
