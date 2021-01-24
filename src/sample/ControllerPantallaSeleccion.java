@@ -131,12 +131,12 @@ public class ControllerPantallaSeleccion {
     @FXML
     public Label mensaje;
 
-    private Pokemon p = new Pokemon("Psyduck", 60, 60, 20, 'M');
-    private Pokemon p2 = new Pokemon("Meowth", 20, 20, 6, 'F');
-    private Pokemon p3 = new Pokemon("Snorlax", 350, 350,60, 'M');
-    private Pokemon p4 = new Pokemon("Bulbasaur", 42, 42,15, 'M');
-    private Pokemon p5 = new Pokemon("Pikachu", 105, 105,40, 'M');
-    private Pokemon p6 = new Pokemon("Rattata", 28,28, 10, 'F');
+    private final Pokemon p = new Pokemon("Psyduck", 100, 100, 40, 'M');
+    private final Pokemon p2 = new Pokemon("Meowth", 80, 80, 35, 'F');
+    private final Pokemon p3 = new Pokemon("Snorlax", 350, 350,70, 'M');
+    private final Pokemon p4 = new Pokemon("Bulbasaur", 95, 95,42, 'M');
+    private final Pokemon p5 = new Pokemon("Pikachu", 105, 105,50, 'M');
+    private final Pokemon p6 = new Pokemon("Rattata", 87,87, 38, 'F');
 
     public boolean psyduckSeleccionado = false;
     public boolean meowthSeleccionado = false;
@@ -144,6 +144,9 @@ public class ControllerPantallaSeleccion {
     public boolean bulbasaurSeleccionado = false;
     public boolean pikachuSeleccionado = false;
     public boolean rattataSeleccionado = false;
+
+    public static Image masculino = new Image("img/masculino.png");
+    public static Image femenino =  new Image("img/hembra.png");
 
     @FXML
     public void initialize(){
@@ -170,31 +173,33 @@ public class ControllerPantallaSeleccion {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaLucha.fxml"));
             GridPane root = (GridPane) loader.load();
-            Scene scene = new Scene(root,450,410);
+            Scene scene = new Scene(root,570,400);
+            stage.setResizable(false);
             stage.setScene(scene);
             // Oculta los botones de cerrar/minimizar/maximizar
-            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             //Envio a la otra pantalla los datos del pokemon seleccionado
             ControllerPantallaLucha controller = loader.getController();
+
             if(psyduckSeleccionado) {
-                controller.mandarInfoDesdeVentana(p, imagen);
+                controller.mandarInfoDesdeVentana(p, new Image("img/psyduck.png"));
             }else
                 if(meowthSeleccionado){
-                    controller.mandarInfoDesdeVentana(p2, imagen2);
+                    controller.mandarInfoDesdeVentana(p2, new Image("img/meowth.png"));
                 }else
                     if(snorlaxSeleccionado){
-                        controller.mandarInfoDesdeVentana(p3, imagen3);
+                        controller.mandarInfoDesdeVentana(p3, new Image("img/snorlax.png"));
                     }else
                         if (bulbasaurSeleccionado){
-                            controller.mandarInfoDesdeVentana(p4, imagen4);
+                            controller.mandarInfoDesdeVentana(p4, new Image("img/bullbasaur.png"));
                         }else
                             if (pikachuSeleccionado){
-                                controller.mandarInfoDesdeVentana(p5, imagen5);
+                                controller.mandarInfoDesdeVentana(p5, new Image("img/pikachu.png"));
                             }else
                                 if (rattataSeleccionado){
-                                    controller.mandarInfoDesdeVentana(p6, imagen6);
+                                    controller.mandarInfoDesdeVentana(p6, new Image("img/rattata.png"));
                             }
             controller.setVentana1(this);
 
@@ -207,14 +212,12 @@ public class ControllerPantallaSeleccion {
         nombre.setText(p.getNombre());
         nivel.setText("Nv "+p.getNivel());
         vida.setText(p.getVida()+"/"+ p.getVida_total());
-        Image image;
         if(p.getGenero() == 'M'){
-            image = new Image("img/masculino.png");
+            genero.setImage(masculino);
         }
         else{
-            image = new Image("img/hembra.png");
+            genero.setImage(femenino);
         }
-        genero.setImage(image);
         genero.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.5)));
         pb.setStyle("-fx-accent: green");
     }
@@ -367,7 +370,51 @@ public class ControllerPantallaSeleccion {
         vida.setTextFill(Color.WHITE);
     }
 
-    public void recibirInformacion(String info) {
-        System.out.println("Iformacion de PantallaLucha recibida en PantallaSeleccion:"+info);
+    public void recibirInformacion(int vidaPokemon, double progresoPb) {
+        System.out.println("Iformacion de PantallaLucha recibida en PantallaSeleccion:"+vidaPokemon);
+        if(psyduckSeleccionado){
+            if(p.getVida() > vidaPokemon){
+                p.setVida(vidaPokemon);
+                pb.setProgress(progresoPb);
+                datosPokemon(nombre, nivel, vida, gen, pb, p);
+            }
+        }else
+            if(meowthSeleccionado){
+                if(p2.getVida() > vidaPokemon){
+                    p2.setVida(vidaPokemon);
+                    pb2.setProgress(progresoPb);
+                    datosPokemon(nombre2, nivel2, vida2, gen2, pb2, p2);
+
+                }
+            }else
+                if(snorlaxSeleccionado){
+                    if(p3.getVida() > vidaPokemon){
+                        p3.setVida(vidaPokemon);
+                        pb3.setProgress(progresoPb);
+                        datosPokemon(nombre3, nivel3, vida3, gen3, pb3, p3);
+                    }
+                }else
+                    if(bulbasaurSeleccionado){
+                        if(p4.getVida() > vidaPokemon){
+                            p4.setVida(vidaPokemon);
+                            pb4.setProgress(progresoPb);
+                            datosPokemon(nombre4, nivel4, vida4, gen4, pb4, p4);
+                        }
+                    }else
+                        if(pikachuSeleccionado){
+                            if(p5.getVida() > vidaPokemon){
+                                p5.setVida(vidaPokemon);
+                                pb5.setProgress(progresoPb);
+                                datosPokemon(nombre5, nivel5, vida5, gen5, pb5, p5);
+                            }
+                        }else
+                            if(rattataSeleccionado){
+                                if(p6.getVida() > vidaPokemon){
+                                    p6.setVida(vidaPokemon);
+                                    pb6.setProgress(progresoPb);
+                                    datosPokemon(nombre6, nivel6, vida6, gen6, pb6, p6);
+                                }
+                            }
+
     }
 }

@@ -4,7 +4,7 @@ public class Pokemon {
 
     private final String nombre;
     private final int vida_total;
-    private final int vida;
+    private int vida;
     private final int nivel;
     private final char genero;
 
@@ -25,6 +25,10 @@ public class Pokemon {
 
     public int getVida() {
         return vida;
+    }
+
+    public void setVida(int vida){
+        this.vida=vida;
     }
 
 

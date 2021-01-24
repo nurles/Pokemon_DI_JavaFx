@@ -6,17 +6,30 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+import java.io.IOException;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("PantallaSeleccion.fxml"));
-        primaryStage.setTitle("Elige un Pokemon");
-        primaryStage.setScene(new Scene(root, 500, 400));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+public class Main extends Application {
+    private static Stage stage;
+
+    public static Stage getStage(){
+        return stage;
     }
 
+    @Override
+    public void start(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("PantallaSeleccion.fxml"));
+            stage = primaryStage;
+            stage.setTitle("Elige un Pokemon");
+            stage.setScene(new Scene(root, 500, 400));
+            stage.setResizable(false);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static void main(String[] args) {
         launch(args);

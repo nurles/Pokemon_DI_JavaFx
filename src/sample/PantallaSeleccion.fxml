@@ -8,6 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
+
 <GridPane alignment="center" hgap="10" style="-fx-background-color: #747474;" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPantallaSeleccion">
    <columnConstraints>
       <ColumnConstraints minWidth="160.0" />
