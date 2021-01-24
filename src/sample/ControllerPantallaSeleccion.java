@@ -137,6 +137,7 @@ public class ControllerPantallaSeleccion {
     private final Pokemon p4 = new Pokemon("Bulbasaur", 95, 95,42, 'M');
     private final Pokemon p5 = new Pokemon("Pikachu", 105, 105,50, 'M');
     private final Pokemon p6 = new Pokemon("Rattata", 87,87, 38, 'F');
+    Pokemon pokemonRival = new Pokemon("Dratini", 100,100, 60, 'F');
 
     public boolean psyduckSeleccionado = false;
     public boolean meowthSeleccionado = false;
@@ -184,22 +185,22 @@ public class ControllerPantallaSeleccion {
             ControllerPantallaLucha controller = loader.getController();
 
             if(psyduckSeleccionado) {
-                controller.mandarInfoDesdeVentana(p, new Image("img/psyduck.png"));
+                controller.mandarInfoDesdeVentana(p, pokemonRival, new Image("img/psyduck.png"));
             }else
                 if(meowthSeleccionado){
-                    controller.mandarInfoDesdeVentana(p2, new Image("img/meowth.png"));
+                    controller.mandarInfoDesdeVentana(p2, pokemonRival, new Image("img/meowth.png"));
                 }else
                     if(snorlaxSeleccionado){
-                        controller.mandarInfoDesdeVentana(p3, new Image("img/snorlax.png"));
+                        controller.mandarInfoDesdeVentana(p3, pokemonRival, new Image("img/snorlax.png"));
                     }else
                         if (bulbasaurSeleccionado){
-                            controller.mandarInfoDesdeVentana(p4, new Image("img/bullbasaur.png"));
+                            controller.mandarInfoDesdeVentana(p4, pokemonRival, new Image("img/bullbasaur.png"));
                         }else
                             if (pikachuSeleccionado){
-                                controller.mandarInfoDesdeVentana(p5, new Image("img/pikachu.png"));
+                                controller.mandarInfoDesdeVentana(p5, pokemonRival, new Image("img/pikachu.png"));
                             }else
                                 if (rattataSeleccionado){
-                                    controller.mandarInfoDesdeVentana(p6, new Image("img/rattata.png"));
+                                    controller.mandarInfoDesdeVentana(p6, pokemonRival, new Image("img/rattata.png"));
                             }
             controller.setVentana1(this);
 
@@ -227,6 +228,7 @@ public class ControllerPantallaSeleccion {
         if(p.getVida() > 0) {
             cambioValores(imagen, nombre, nivel, vida, boton);
             psyduckSeleccionado=true;
+            boton.setDisable(false);
             mensaje.setText("Pulsa Siguiente");
 
             valoresIniciales(imagen2, nombre2, nivel2, vida2);
@@ -241,7 +243,8 @@ public class ControllerPantallaSeleccion {
             rattataSeleccionado=false;
         }
         else{
-            mensaje.setText("Pokemon debilitado. Elige otro Pokemon");
+            mensaje.setText("Pokemon debilitado.");
+            boton.setDisable(true);
         }
     }
 
@@ -250,6 +253,7 @@ public class ControllerPantallaSeleccion {
         if(p2.getVida() > 0) {
             cambioValores(imagen2, nombre2, nivel2, vida2, boton);
             meowthSeleccionado=true;
+            boton.setDisable(false);
             mensaje.setText("Pulsa Siguiente");
 
             valoresIniciales(imagen, nombre, nivel, vida);
@@ -263,7 +267,8 @@ public class ControllerPantallaSeleccion {
             valoresIniciales(imagen6, nombre6, nivel6, vida6);
             rattataSeleccionado=false;
         }else{
-            mensaje.setText("Pokemon debilitado. Elige otro Pokemon");
+            mensaje.setText("Pokemon debilitado.");
+            boton.setDisable(true);
         }
     }
 
@@ -272,6 +277,7 @@ public class ControllerPantallaSeleccion {
         if(p3.getVida() > 0) {
             cambioValores(imagen3, nombre3, nivel3, vida3, boton);
             snorlaxSeleccionado=true;
+            boton.setDisable(false);
             mensaje.setText("Pulsa Siguiente");
 
             valoresIniciales(imagen, nombre, nivel, vida);
@@ -285,7 +291,8 @@ public class ControllerPantallaSeleccion {
             valoresIniciales(imagen6, nombre6, nivel6, vida6);
             rattataSeleccionado=false;
         }else{
-            mensaje.setText("Pokemon debilitado. Elige otro Pokemon");
+            mensaje.setText("Pokemon debilitado.");
+            boton.setDisable(true);
         }
     }
 
@@ -294,6 +301,7 @@ public class ControllerPantallaSeleccion {
         if(p4.getVida() > 0) {
             cambioValores(imagen4, nombre4, nivel4, vida4, boton);
             bulbasaurSeleccionado=true;
+            boton.setDisable(false);
             mensaje.setText("Pulsa Siguiente");
 
             valoresIniciales(imagen, nombre, nivel, vida);
@@ -307,7 +315,8 @@ public class ControllerPantallaSeleccion {
             valoresIniciales(imagen6, nombre6, nivel6, vida6);
             rattataSeleccionado=false;
         }else{
-            mensaje.setText("Pokemon debilitado. Elige otro Pokemon");
+            mensaje.setText("Pokemon debilitado.");
+            boton.setDisable(true);
         }
     }
 
@@ -316,6 +325,7 @@ public class ControllerPantallaSeleccion {
         if(p5.getVida() > 0) {
             cambioValores(imagen5, nombre5, nivel5, vida5, boton);
             pikachuSeleccionado=true;
+            boton.setDisable(false);
             mensaje.setText("Pulsa Siguiente");
 
             valoresIniciales(imagen, nombre, nivel, vida);
@@ -329,7 +339,8 @@ public class ControllerPantallaSeleccion {
             valoresIniciales(imagen6, nombre6, nivel6, vida6);
             rattataSeleccionado=false;
         }else{
-            mensaje.setText("Pokemon debilitado. Elige otro Pokemon");
+            mensaje.setText("Pokemon debilitado.");
+            boton.setDisable(true);
         }
     }
 
@@ -338,6 +349,7 @@ public class ControllerPantallaSeleccion {
         if(p6.getVida() > 0) {
             cambioValores(imagen6, nombre6, nivel6, vida6, boton);
             rattataSeleccionado=true;
+            boton.setDisable(false);
             mensaje.setText("Pulsa Siguiente");
 
             valoresIniciales(imagen, nombre, nivel, vida);
@@ -351,7 +363,8 @@ public class ControllerPantallaSeleccion {
             valoresIniciales(imagen5, nombre5, nivel5, vida5);
             pikachuSeleccionado=false;
         }else{
-            mensaje.setText("Pokemon debilitado. Elige otro Pokemon");
+            mensaje.setText("Pokemon debilitado.");
+            boton.setDisable(true);
         }
     }
 
@@ -370,8 +383,8 @@ public class ControllerPantallaSeleccion {
         vida.setTextFill(Color.WHITE);
     }
 
-    public void recibirInformacion(int vidaPokemon, double progresoPb) {
-        System.out.println("Iformacion de PantallaLucha recibida en PantallaSeleccion:"+vidaPokemon);
+    public void recibirInformacion(int vidaPokemon, int vidaPokemonRival, double progresoPb) {
+        pokemonRival.setVida(vidaPokemonRival);
         if(psyduckSeleccionado){
             if(p.getVida() > vidaPokemon){
                 p.setVida(vidaPokemon);

@@ -75,22 +75,22 @@ public class ControllerPantallaLucha {
     @FXML
     public Button idCancelar;
 
-    Pokemon pokemonRival = new Pokemon("Dratini", 100,100, 60, 'F');
+    //Pokemon pokemonRival = new Pokemon("Dratini", 100,100, 60, 'F');
     public static int vidaPokemon;
     public static int vidaTotalPokemon;
+    public static int vidaPokemonRival;
+    public static int vidaTotalPokemonRival;
 
 
     public void initialize(){
-
-        idNombreRival.setText(pokemonRival.getNombre());
-        idNivelRival.setText("Nv "+pokemonRival.getNivel());
-        if(pokemonRival.getGenero() == 'M'){
-            idGeneroRival.setImage(ControllerPantallaSeleccion.masculino);
-        }
-        else{
-            idGeneroRival.setImage(ControllerPantallaSeleccion.femenino);
-        }
         idPbRival.setStyle("-fx-accent: green");
+        if(vidaPokemonRival == vidaTotalPokemonRival){
+            idPbRival.setProgress(1);
+        }else{
+            idPbRival.setProgress((double)vidaPokemonRival/100);
+            cambioColorPb();
+        }
+
         idAtaque1.setVisible(false);
         idAtaque2.setVisible(false);
         idAtaque3.setVisible(false);
@@ -99,7 +99,7 @@ public class ControllerPantallaLucha {
 
     }
 
-    public void mandarInfoDesdeVentana(Pokemon pokemon, Image imagenRecibida) {
+    public void mandarInfoDesdeVentana(Pokemon pokemon,Pokemon pokemonRival, Image imagenRecibida) {
         idNombre.setText(pokemon.getNombre());
         idImagen.setImage(imagenRecibida);
         if(pokemon.getGenero() == 'M'){
@@ -110,8 +110,18 @@ public class ControllerPantallaLucha {
         }
         idNivel.setText("Nv "+pokemon.getNivel());
         idPb.setStyle("-fx-accent: green");
+        idNombreRival.setText(pokemonRival.getNombre());
+        idNivelRival.setText("Nv "+pokemonRival.getNivel());
+        if(pokemonRival.getGenero() == 'M'){
+            idGeneroRival.setImage(ControllerPantallaSeleccion.masculino);
+        }
+        else{
+            idGeneroRival.setImage(ControllerPantallaSeleccion.femenino);
+        }
         vidaPokemon = pokemon.getVida();
         vidaTotalPokemon = pokemon.getVida_total();
+        vidaPokemonRival = pokemonRival.getVida();
+        vidaTotalPokemonRival = pokemonRival.getVida_total();
 
 
 
@@ -119,7 +129,7 @@ public class ControllerPantallaLucha {
 
     public void setVentana1(ControllerPantallaSeleccion ventana1){
         ventana1Controller = ventana1;
-        ventana1Controller.recibirInformacion(vidaPokemon, idPb.getProgress());
+        ventana1Controller.recibirInformacion(vidaPokemon, vidaPokemonRival, idPb.getProgress());
 
     }
 
@@ -135,21 +145,21 @@ public class ControllerPantallaLucha {
 
     @FXML
     private void ataqueSeguro() throws IOException {
-        if(pokemonRival.getVida()>0) {
+        if(vidaPokemonRival>0) {
             double progressRival = idPbRival.getProgress();
-            int vidaRival = pokemonRival.getVida() - 20;
+            int vidaRival = vidaPokemonRival - 20;
             if(vidaRival <= 0){
-                pokemonRival.setVida(0);
+                vidaPokemonRival=0;
                 idPbRival.setProgress(0);
                 System.out.println("El Pokemon Rival se ha debilitado");
                 Alert customAlert = new Alert(Alert.AlertType.NONE);
                 customAlert.setTitle("¡Enhorabuena!");
-                customAlert.setHeaderText(pokemonRival.getNombre()+" ha sido debilitado");
+                customAlert.setHeaderText(idNombreRival.getText()+" ha sido debilitado");
                 customAlert.getDialogPane().setGraphic(idImagenRival);
                 customAlert.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH);
                 showAlert(customAlert);
             }else {
-                pokemonRival.setVida(vidaRival);
+                vidaPokemonRival=vidaRival;
                 idPbRival.setProgress(progressRival - 0.2);
                 System.out.println("Has hecho un Ataque Seguro, la vida del rival ha bajado 20 PS");
                 if(vidaPokemon > 0) {
@@ -203,21 +213,21 @@ public class ControllerPantallaLucha {
     @FXML
     private void ataqueArriesgado() throws IOException {
         double ataqueAleatorio = Math.floor(Math.random()*(25-10+1)+10);
-        if(pokemonRival.getVida()>0) {
+        if(vidaPokemonRival>0) {
             double progressRival = idPbRival.getProgress();
-            int vidaRival = (int) (pokemonRival.getVida() - ataqueAleatorio);
+            int vidaRival = (int) (vidaPokemonRival - ataqueAleatorio);
             if (vidaRival <= 0) {
-                pokemonRival.setVida(0);
+                vidaPokemonRival = 0;
                 idPbRival.setProgress(0);
                 System.out.println("El Pokemon Rival se ha debilitado");
                 Alert customAlert = new Alert(Alert.AlertType.NONE);
                 customAlert.setTitle("¡Enhorabuena!");
-                customAlert.setHeaderText(pokemonRival.getNombre()+" ha sido debilitado");
+                customAlert.setHeaderText(idNombreRival.getText()+" ha sido debilitado");
                 customAlert.getDialogPane().setGraphic(idImagenRival);
                 customAlert.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH);
                 showAlert(customAlert);
             } else {
-                pokemonRival.setVida(vidaRival);
+                vidaPokemonRival=vidaRival;
                 idPbRival.setProgress(progressRival - (ataqueAleatorio/100));
                 System.out.println("Has hecho un Ataque Arriesgado, la vida del rival ha bajado " + ataqueAleatorio + " PS");
                 if (vidaPokemon > 0) {
@@ -252,21 +262,21 @@ public class ControllerPantallaLucha {
     @FXML
     private void ataqueMuyArriesgado() throws IOException {
         double ataqueAleatorio = Math.floor(Math.random()*(50+1)+0);
-        if(pokemonRival.getVida()>0) {
+        if(vidaPokemonRival>0) {
             double progressRival = idPbRival.getProgress();
-            int vidaRival = (int) (pokemonRival.getVida() - ataqueAleatorio);
+            int vidaRival = (int) (vidaPokemonRival - ataqueAleatorio);
             if (vidaRival <= 0) {
-                pokemonRival.setVida(0);
+                vidaPokemonRival=0;
                 idPbRival.setProgress(0);
                 System.out.println("El Pokemon Rival se ha debilitado");
                 Alert customAlert = new Alert(Alert.AlertType.NONE);
                 customAlert.setTitle("'¡Enhorabuena!'");
-                customAlert.setHeaderText(pokemonRival.getNombre()+" ha sido debilitado");
+                customAlert.setHeaderText(idNombreRival.getText()+" ha sido debilitado");
                 customAlert.getDialogPane().setGraphic(idImagenRival);
                 customAlert.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH);
                 showAlert(customAlert);
             } else {
-                pokemonRival.setVida(vidaRival);
+                vidaPokemonRival =vidaRival;
                 idPbRival.setProgress(progressRival - (ataqueAleatorio/100));
                 System.out.println("Has hecho un Ataque Muy Arriesgado, la vida del rival ha bajado " + ataqueAleatorio + " PS");
                 if (vidaPokemon > 0) {
@@ -303,9 +313,9 @@ public class ControllerPantallaLucha {
             System.out.println("Ha presionado la X");
         } else if(resultado.get() == ButtonType.PREVIOUS) {
             //Esto vuelve a la pantalla inicial, pero la carga de nuevo no sé como volver a la anterior con la informacion cambiada
-            Parent root = FXMLLoader.load(getClass().getResource("PantallaSeleccion.fxml"));
+            /*Parent root = FXMLLoader.load(getClass().getResource("PantallaSeleccion.fxml"));
             Scene newScene = new Scene(root);
-            Main.getStage().setScene(newScene);
+            Main.getStage().setScene(newScene);*/
         } else if (resultado.get() == ButtonType.FINISH) {
             Platform.exit();
         } else {
@@ -349,15 +359,15 @@ public class ControllerPantallaLucha {
         }
         //Cura PokemonRival
         vidaAleatoria = Math.floor(Math.random()*(75-25+1)+25);
-        if (pokemonRival.getVida() < pokemonRival.getVida_total()){
+        if (vidaPokemonRival < vidaTotalPokemonRival){
             //Para que la vida nunca sea mayor que la vidaTotal
-            int vidaASumar = pokemonRival.getVida_total() - pokemonRival.getVida();
+            int vidaASumar = (int)(vidaTotalPokemonRival - vidaPokemonRival);
             if(vidaASumar < vidaAleatoria){
-                pokemonRival.setVida(pokemonRival.getVida()+vidaASumar);
+                vidaPokemonRival+=vidaASumar;
                 idPbRival.setProgress(progressRival+((double)vidaASumar/100));
                 System.out.println("El Pokemon Rival ha recuperado "+vidaASumar+" PS");
             }else{
-                pokemonRival.setVida((int) (pokemonRival.getVida()+vidaAleatoria));
+                vidaPokemonRival+=vidaAleatoria;
                 idPbRival.setProgress(progressRival+(vidaAleatoria/100));
                 System.out.println("El Pokemon Rival ha recuperado "+vidaAleatoria+" PS");
             }
@@ -380,7 +390,7 @@ public class ControllerPantallaLucha {
 
     @FXML
     private void mostrarVidaRival(){
-        idPSRival.setText(String.valueOf(pokemonRival.getVida()));
+        idPSRival.setText(String.valueOf(vidaPokemonRival));
     }
 
     @FXML
