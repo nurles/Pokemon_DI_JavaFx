@@ -11,9 +11,12 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 public class ControllerPantallaSeleccion {
 
@@ -131,6 +134,9 @@ public class ControllerPantallaSeleccion {
     @FXML
     public Label mensaje;
 
+    @FXML
+    public Button botonGraficos;
+
     private final Pokemon p = new Pokemon("Psyduck", 100, 100, 40, 'M');
     private final Pokemon p2 = new Pokemon("Meowth", 80, 80, 35, 'F');
     private final Pokemon p3 = new Pokemon("Snorlax", 350, 350,70, 'M');
@@ -166,6 +172,17 @@ public class ControllerPantallaSeleccion {
 
         mensaje.setText("Elige un Pokemon");
 
+    }
+
+    @FXML
+    private void clickBotonGraficos () throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Graficos.fxml"));
+        VBox root = (VBox) loader.load();
+        Scene scene = new Scene(root,570,400);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
