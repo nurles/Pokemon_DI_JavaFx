@@ -155,6 +155,16 @@ public class ControllerPantallaSeleccion {
     public static Image masculino = new Image("img/masculino.png");
     public static Image femenino =  new Image("img/hembra.png");
 
+
+    public static int cont;
+    public static int cont2;
+    public static int cont3;
+    public static int cont4;
+    public static int cont5;
+    public static int cont6;
+
+
+
     @FXML
     public void initialize(){
         //Pokemon 1
@@ -174,16 +184,24 @@ public class ControllerPantallaSeleccion {
 
     }
 
+
     @FXML
     private void clickBotonGraficos () throws IOException {
+        //Solo se actualizan los graficos al darle al boton estadisticas, no consigo que se actualicen en tiempo real
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Graficos.fxml"));
         VBox root = (VBox) loader.load();
-        Scene scene = new Scene(root,570,400);
+        Scene scene = new Scene(root,700,700);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
+        ControllerGraficos controller = loader.getController();
+        controller.controlbarras(this);
+
     }
+
+
 
     @FXML
     private void onButtonAbrirClicked(ActionEvent event) {
@@ -194,8 +212,6 @@ public class ControllerPantallaSeleccion {
             Scene scene = new Scene(root,570,400);
             stage.setResizable(false);
             stage.setScene(scene);
-            // Oculta los botones de cerrar/minimizar/maximizar
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             //Envio a la otra pantalla los datos del pokemon seleccionado
@@ -203,21 +219,27 @@ public class ControllerPantallaSeleccion {
 
             if(psyduckSeleccionado) {
                 controller.mandarInfoDesdeVentana(p, pokemonRival, new Image("img/psyduck.png"));
+                cont+=1;
             }else
                 if(meowthSeleccionado){
                     controller.mandarInfoDesdeVentana(p2, pokemonRival, new Image("img/meowth.png"));
+                    cont2+=1;
                 }else
                     if(snorlaxSeleccionado){
                         controller.mandarInfoDesdeVentana(p3, pokemonRival, new Image("img/snorlax.png"));
+                        cont3+=1;
                     }else
                         if (bulbasaurSeleccionado){
                             controller.mandarInfoDesdeVentana(p4, pokemonRival, new Image("img/bullbasaur.png"));
+                            cont4+=1;
                         }else
                             if (pikachuSeleccionado){
                                 controller.mandarInfoDesdeVentana(p5, pokemonRival, new Image("img/pikachu.png"));
+                                cont5+=1;
                             }else
                                 if (rattataSeleccionado){
                                     controller.mandarInfoDesdeVentana(p6, pokemonRival, new Image("img/rattata.png"));
+                                    cont6+=1;
                             }
             controller.setVentana1(this);
 

@@ -17,7 +17,7 @@ import java.util.Optional;
 public class ControllerPantallaLucha {
 
     private ControllerPantallaSeleccion ventana1Controller;
-    private ControllerGraficos ventana2Controller;
+    ControllerGraficos controlDanio;
 
     @FXML
     public Label idNombre;
@@ -135,10 +135,6 @@ public class ControllerPantallaLucha {
 
     }
 
-    public void enviarDatos (ControllerGraficos ventana1){
-        ventana2Controller = ventana1;
-        ventana2Controller.recibirDatosPieChart(danioTotalAmigo, danioTotalRival);
-    }
 
     @FXML
     private void botonAtacar(){
@@ -150,13 +146,16 @@ public class ControllerPantallaLucha {
         curar.setVisible(false);
     }
 
-    private void ataque (String ataque, double vidaQuitar) throws IOException {
+    private void ataque (String ataque, double vidaQuitar, double vidaQuitarRival) throws IOException {
         if(vidaPokemonRival>0) {
             double progressRival = idPbRival.getProgress();
             int vidaRival = (int) (vidaPokemonRival - vidaQuitar);
             if(vidaRival <= 0){
                 vidaPokemonRival=0;
                 idPbRival.setProgress(0);
+                danioTotalRival+=vidaQuitar;
+                System.out.println("El daño total que ha recibido el rival es "+danioTotalRival);
+                System.out.println("Has hecho un "+ataque+", la vida del rival ha bajado "+vidaQuitar+" PS");
                 System.out.println("El Pokemon Rival se ha debilitado");
                 Alert customAlert = new Alert(Alert.AlertType.NONE);
                 customAlert.setTitle("¡Enhorabuena!");
@@ -168,14 +167,17 @@ public class ControllerPantallaLucha {
                 vidaPokemonRival=vidaRival;
                 idPbRival.setProgress(progressRival - (vidaQuitar/100));
                 danioTotalRival+=vidaQuitar;
+                System.out.println("El daño total que ha recibido el rival es "+danioTotalRival);
                 System.out.println("Has hecho un "+ataque+", la vida del rival ha bajado "+vidaQuitar+" PS");
                 if(vidaPokemon > 0) {
                     double progress = idPb.getProgress();
-                    vidaPokemon -= vidaQuitar;
+                    vidaPokemon -= vidaQuitarRival;
                     if(vidaPokemon <= 0){
                         vidaPokemon=0;
                         idPb.setProgress(0);
                         setVentana1(ventana1Controller);
+                        danioTotalAmigo+=vidaQuitarRival;
+                        System.out.println("El Pokemon Rival te ha hecho un "+ataque+", tu vida ha bajado " +vidaQuitarRival+" PS");
                         System.out.println("Tu Pokemon se ha debilitado");
                         Alert customAlert = new Alert(Alert.AlertType.NONE);
                         customAlert.setTitle("Pokemon debilitado");
@@ -184,32 +186,35 @@ public class ControllerPantallaLucha {
                         customAlert.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.PREVIOUS);
                         showAlert(customAlert);
                     }else {
-                        idPb.setProgress(progress - (vidaQuitar/100));
-                        danioTotalAmigo+=vidaQuitar;
-                        System.out.println("El Pokemon Rival te ha hecho un "+ataque+", tu vida ha bajado " +vidaQuitar+" PS");
+                        idPb.setProgress(progress - (vidaQuitarRival/100));
+                        danioTotalAmigo+=vidaQuitarRival;
+                        System.out.println("El Pokemon Rival te ha hecho un "+ataque+", tu vida ha bajado " +vidaQuitarRival+" PS");
                         setVentana1(ventana1Controller);
                     }
                 }
             }
         }
+        controlDanio.recibirDatosDanios(danioTotalAmigo, danioTotalRival);
         cambioColorPb();
     }
 
     @FXML
     private void ataqueSeguro() throws IOException {
-        ataque("Ataque Seguro", 20);
+        ataque("Ataque Seguro", 20, 20);
     }
 
     @FXML
     private void ataqueArriesgado() throws IOException {
         double ataqueAleatorio = Math.floor(Math.random()*(25-10+1)+10);
-        ataque("Ataque Arriesgado", ataqueAleatorio);
+        double ataqueAleatorioRival = Math.floor(Math.random()*(25-10+1)+10);
+        ataque("Ataque Arriesgado", ataqueAleatorio, ataqueAleatorioRival);
     }
 
     @FXML
     private void ataqueMuyArriesgado() throws IOException {
         double ataqueAleatorio = Math.floor(Math.random()*(50+1)+0);
-       ataque("Ataque muy Arriesgado", ataqueAleatorio);
+        double ataqueAleatorioRival = Math.floor(Math.random()*(50+1)+0);
+       ataque("Ataque muy Arriesgado", ataqueAleatorio, ataqueAleatorioRival);
     }
 
     private void showAlert(Alert alert) throws IOException {
@@ -227,6 +232,7 @@ public class ControllerPantallaLucha {
             System.out.println("Resultado = OTROS: " + resultado.get().getText());
         }
     }
+
     private void cambioColorPb(){
         if(idPb.getProgress()<=0.6 && idPb.getProgress()>=0.25){
             idPb.setStyle("-fx-accent: yellow");
